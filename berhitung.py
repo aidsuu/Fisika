@@ -12,7 +12,11 @@ if(sx == "C"):
     y = x
   elif(sy == 'F'):
     y = x*9/5+32
+    
+elif(sx == "C"):
+  if(sz == "C"):
+    z = x
   elif(sz == 'K'):
-    y = x+273.15
+    z = x+273.15
 st.write (x, ' ', sx, ' = ',y, sy)
 st.write (x, ' ', sx, ' = ',z, sz)
