@@ -3,7 +3,7 @@ import streamlit as st
 x = st.number_input("Masukkan angka")
 sx = st.selectbox("Satuan:", ("C", "F", "K", "R"), key='sx')
 st.write = ("Anda memamsukkan", x,' ',sx)
-sy = st.selecbox("Dikonversi ke:", ("C", "F", "K", "R"), key='sy')
+sy = st.selectbox("Dikonversi ke:", ("C", "F", "K", "R"), key='sy')
 y = 0
 if(sx == "C"):
   if(sy == 'C'):
