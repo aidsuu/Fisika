@@ -11,3 +11,9 @@ if(sx == "C"):
   elif(sy == 'F'):
     y = x*9/5+32
 st.write (x, ' ', sx, ' = ',y, sy)
+
+with st.popover("Open popover"):
+    st.markdown("Hello World 👋")
+    name = st.text_input("What's your name?")
+
+st.write("Your name:", name)
