@@ -6,13 +6,13 @@ st.write("Anda memasukka", x, ' ', sx)
 sy = st.text_input("Dikonversi ke", "F")
 sz = st.text_input("Dikonversi ke", "K")
 y = 0
-z = 0
 if(sx == "C"):
   if(sy == 'C'):
     y = x
   elif(sy == 'F'):
     y = x*9/5+32
-    
+
+z = 0
 elif(sx == "C"):
   if(sz == "C"):
     z = x
