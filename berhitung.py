@@ -13,8 +13,8 @@ if(sx == "C"):
     y = x*9/5+32
 
 z = 0
-elif(sx == "C"):
-  if(sz == "C"):
+if(sx == "C"):
+  elif(sz == "C"):
     z = x
   elif(sz == 'K'):
     z = x+273.15
