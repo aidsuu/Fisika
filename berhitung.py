@@ -6,7 +6,6 @@ st.write ("Anda memasukkan", x,' ',sx)
 sy = st.selectbox("Dikonversi ke", ("C", "F", "R", "K"), key='sy')
 
 y = 0
-
 if sx == 'C':  # Celsius
     if sy == 'C':
         y = x
@@ -44,4 +43,4 @@ elif sx == 'R':  # Reaumur
     elif sy == 'R':
         y = x
 
-st.write(x, sx, "=", y, sy)
+st.write(x,' ',sx, "=", y, sy)
