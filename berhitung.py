@@ -43,4 +43,4 @@ elif sx == 'R':  # Reaumur
     elif sy == 'R':
         y = x
 
-st.write(x,' ',sx, "=", y, sy)
+st.write (x,' ',sx, "=", y, sy)
