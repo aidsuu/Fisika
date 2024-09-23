@@ -12,8 +12,8 @@ if(sx == "C"):
     y = x*9/5+32
 st.write (x, ' ', sx, ' = ',y, sy)
 
-with st.popover("Open popover"):
-    st.markdown("Hello World 👋")
-    name = st.text_input("What's your name?")
+with st.popover("Konversi Suhu"):
+    st.markdown("Konversi Suhu 👋")
+    name = st.text_input("Ingin Konversi apa?")
 
 st.write("Your name:", name)
