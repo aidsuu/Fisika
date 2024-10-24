@@ -1,6 +1,6 @@
 import numpy as np
 import mathplotlib.pylot as plt
-import streamlit as
+import streamlit as st
 
 # Header
 st.header('Fisika Komputasi Awan')  
