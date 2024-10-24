@@ -6,41 +6,43 @@ import streamlit as st
 st.header('Fisika Komputasi Awan')  
 st.subheader('Adi Saputra :sparkles:')
 
-# Fungsi untuk menghasilkan titik acak dalam lingkaran yang menyinggung garis x dan y
-def generate_random_points_in_circle(num_points, center=(1, 1.6), radius=1):
+# Fungsi untuk menghasilkan titik acak dalam lingkaran
+def generate_random_points_in_circle(num_points, radius=1):
     angles = np.random.uniform(0, 2 * np.pi, num_points)  # Sudut acak
     radii = np.sqrt(np.random.uniform(0, 1, num_points)) * radius  # Radius acak
-    x = center[0] + radii * np.cos(angles)
-    y = center[1] + radii * np.sin(angles)
+    x = radii * np.cos(angles)
+    y = radii * np.sin(angles)
     return x, y
 
 # Membuat tombol untuk mengubah data acak
 if st.button('Data'):
     # Menghasilkan titik acak dalam lingkaran
-    num_points = 50
-    center = (1, 1.6)  # Pusat lingkaran diubah ke (1, 1.6)
-    x, y = generate_random_points_in_circle(num_points, center=center)
-    colors = np.random.rand(num_points)
+    num_points = 100  # Meningkatkan jumlah titik untuk visualisasi yang lebih baik
+    x, y = generate_random_points_in_circle(num_points)
+    colors = np.random.rand(num_points, 3)  # RGB colors
     area = (30 * np.random.rand(num_points))**2  # Ukuran bubble
 
     # Membuat plot
-    fig, ax = plt.subplots()
-    ax.set_aspect('equal')  # Mengatur aspek ratio menjadi equal
-    ax.set_xlim([0, 2.1])  # Batas x pada plot
-    ax.set_ylim([0, 3.2])  # Batas y pada plot disesuaikan untuk lingkaran di y=1.6
-    ax.grid(True)  # Mengaktifkan grid
+    fig, ax = plt.subplots(figsize=(8, 8))
+    ax.set_aspect('equal')
+    ax.set_xlim([-1.1, 1.1])  # Sedikit lebih besar dari radius untuk margin
+    ax.set_ylim([-1.1, 1.1])
+    ax.grid(True)
 
-    # Membuat lingkaran batas radius 1, dengan pusat di (1,1.6)
-    circle = plt.Circle(center, 1, color='r', fill=False, linestyle='--')
+    # Membuat lingkaran batas radius 1 di pusat (0,0)
+    circle = plt.Circle((0, 0), 1, color='r', fill=False, linestyle='--')
     ax.add_artist(circle)
 
     # Plot scatter dan garis ke pusat lingkaran
     for i in range(num_points):
-        ax.plot([x[i], center[0]], [y[i], center[1]], color='gray', linestyle='--', linewidth=0.7)  # Garis dari titik ke pusat
-        ax.scatter(x[i], y[i], s=area[i], c=np.array([colors[i], colors[i], colors[i]]).reshape(1, -1), alpha=0.5)
+        ax.plot([x[i], 0], [y[i], 0], color='gray', linestyle='--', linewidth=0.5, alpha=0.3)  # Garis ke pusat
+        ax.scatter(x[i], y[i], s=area[i], c=[colors[i]], alpha=0.5)
+
+    # Menambahkan titik pusat
+    ax.scatter(0, 0, color='green', s=50, zorder=5)  # Titik pusat dengan warna hijau
 
     # Menampilkan plot di Streamlit
     st.pyplot(fig)
 
 # Keterangan
-st.caption('Titik acak dalam lingkaran yang menyinggung sumbu x dan y, dengan garis menuju pusat lingkaran.')
+st.caption('Lingkaran dengan ukuran dan warna acak dan tersebar didalam lingkaran dengan radius 1')
