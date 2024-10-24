@@ -7,7 +7,7 @@ st.header('Fisika Komputasi Awan')
 st.subheader('Adi Saputra :sparkles:')
 
 # Fungsi untuk menghasilkan titik acak dalam lingkaran yang menyinggung garis x dan y
-def generate_random_points_in_circle(num_points, center=(1, 1), radius=1):
+def generate_random_points_in_circle(num_points, center=(1, 1.6), radius=1):
     angles = np.random.uniform(0, 2 * np.pi, num_points)  # Sudut acak
     radii = np.sqrt(np.random.uniform(0, 1, num_points)) * radius  # Radius acak
     x = center[0] + radii * np.cos(angles)
@@ -18,7 +18,7 @@ def generate_random_points_in_circle(num_points, center=(1, 1), radius=1):
 if st.button('Data'):
     # Menghasilkan titik acak dalam lingkaran
     num_points = 50
-    center = (1, 1)  # Pusat lingkaran
+    center = (1, 1.6)  # Pusat lingkaran diubah ke (1, 1.6)
     x, y = generate_random_points_in_circle(num_points, center=center)
     colors = np.random.rand(num_points)
     area = (30 * np.random.rand(num_points))**2  # Ukuran bubble
@@ -26,11 +26,11 @@ if st.button('Data'):
     # Membuat plot
     fig, ax = plt.subplots()
     ax.set_aspect('equal')  # Mengatur aspek ratio menjadi equal
-    ax.set_xlim([0, 2.1])  # Batas x pada plot (lingkaran menyinggung sumbu y di 0 dan x di 2)
-    ax.set_ylim([0, 2.1])  # Batas y pada plot (lingkaran menyinggung sumbu x di 0 dan y di 2)
+    ax.set_xlim([0, 2.1])  # Batas x pada plot
+    ax.set_ylim([0, 3.2])  # Batas y pada plot disesuaikan untuk lingkaran di y=1.6
     ax.grid(True)  # Mengaktifkan grid
 
-    # Membuat lingkaran batas radius 1, dengan pusat di (1,1)
+    # Membuat lingkaran batas radius 1, dengan pusat di (1,1.6)
     circle = plt.Circle(center, 1, color='r', fill=False, linestyle='--')
     ax.add_artist(circle)
 
