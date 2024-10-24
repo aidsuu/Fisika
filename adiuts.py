@@ -24,6 +24,7 @@ if st.button('Data'):
 
     # Membuat plot
     fig, ax = plt.subplots()
+    ax.set_aspect('equal')  # Mengatur aspek ratio menjadi equal
     ax.set_xlim([-1.1, 1.1])  # Batas x pada plot
     ax.set_ylim([-1.1, 1.1])  # Batas y pada plot
     scatter = ax.scatter(x, y, s=area, c=colors, alpha=0.5)
