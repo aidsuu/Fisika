@@ -18,19 +18,18 @@ denominator = n * sum_x2 - sum_x_squared
 if denominator == 0:
     st.error("The denominator nΣx² - (Σx)² is zero. Please check your input values.")
 else:
-    # Step 2: Calculate b
+    # Calculation of b
     b = (n * sum_xy - sum_x * sum_y) / denominator
     st.write("Calculated value of b:", b)
 
-    # Step 3: Calculate a
+    # Calculation of a
     a = (sum_y * sum_x2 - sum_x * sum_xy) / denominator
     st.write("Calculated value of a:", a)
 
-    # Step 4: Calculate Sy (Standard deviation of y)
+    # Calculation of Sy (Standard deviation of y)
     Sy_numerator = (
         sum_y2
-        - ((sum_y**2) / n)
-        - (b * (sum_xy - sum_x * sum_y / n))
+        - (sum_x2 * sum_y**2 - 2 * sum_x * sum_y * sum_xy + n * sum_xy**2) / denominator
     )
     if Sy_numerator < 0:
         st.error("Sy numerator is negative, resulting in an invalid square root calculation. Please check your input values.")
@@ -40,15 +39,15 @@ else:
         Sy = math.sqrt(Sy_numerator / (n - 2))
         st.write("Calculated value of Sy:", Sy)
 
-        # Step 5: Calculate Sb (Standard error of b)
+        # Calculation of Sb (Standard error of b)
         Sb = Sy * math.sqrt(n / denominator)
         st.write("Calculated value of Sb:", Sb)
 
-        # Step 6: Calculate Sa (Standard error of a)
+        # Calculation of Sa (Standard error of a)
         Sa = Sy * math.sqrt(sum_x2 / denominator)
         st.write("Calculated value of Sa:", Sa)
 
-        # Step 7: Calculate relative errors for a and b
+        # Calculation of relative errors for a and b
         Ra = (Sa / abs(a)) * 100 if a != 0 else None
         Rb = (Sb / abs(b)) * 100 if b != 0 else None
 
