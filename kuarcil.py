@@ -32,4 +32,4 @@ st.write("Koefisien Korelasi (a):", a)
 st.write("Standar Deviasi Y:", sy)
 st.write("Standar Deviasi b:", sb)
 st.write("Standar Deviasi a:", sa)
-st.write("Ralat Relatif
+st.write("Ralat Relatif")
