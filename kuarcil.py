@@ -12,6 +12,7 @@ sum_x2 = st.number_input("Enter the sum of x^2 (Σx²):", format="%.10f")
 sum_xy = st.number_input("Enter the sum of xy (Σxy):", format="%.10f")
 sum_y2 = st.number_input("Enter the sum of y^2 (Σy²):", format="%.10f")
 sum_x_squared = st.number_input("Enter the square of the sum of x ((Σx)^2):", format="%.10f")
+sum_y_squared = st.number_input("Enter the square of the sum of y ((Σy)^2):", format="%.10f")
 
 # Step 1: Check denominator to prevent division by zero
 denominator = n * sum_x2 - sum_x_squared
@@ -29,7 +30,7 @@ else:
     # Calculation of Sy (Standard deviation of y)
     Sy_numerator = (
         sum_y2
-        - (sum_x2 * sum_y**2 - 2 * sum_x * sum_y * sum_xy + n * sum_xy**2) / denominator
+        - (sum_x2 * sum_y_squared - 2 * sum_x * sum_y * sum_xy + n * sum_xy**2) / denominator
     )
     if Sy_numerator < 0:
         st.error("Sy numerator is negative, resulting in an invalid square root calculation. Please check your input values.")
