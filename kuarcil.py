@@ -4,15 +4,15 @@ import math
 # Title
 st.title("Calculation of Regression Parameters")
 
-# Input parameters with format for precise decimal inputs
+# Input parameters with precise formatting and small step size for exact decimal values
 n = st.number_input("Enter the value of n (number of data points):", step=1)
-sum_x = st.number_input("Enter the sum of x (Σx):", format="%.10f")
-sum_y = st.number_input("Enter the sum of y (Σy):", format="%.10f")
-sum_x2 = st.number_input("Enter the sum of x^2 (Σx²):", format="%.10f")
-sum_xy = st.number_input("Enter the sum of xy (Σxy):", format="%.10f")
-sum_y2 = st.number_input("Enter the sum of y^2 (Σy²):", format="%.10f")
-sum_x_squared = st.number_input("Enter the square of the sum of x ((Σx)^2):", format="%.10f")
-sum_y_squared = st.number_input("Enter the square of the sum of y ((Σy)^2):", format="%.10f")
+sum_x = st.number_input("Enter the sum of x (Σx):", format="%.10f", step=0.0000000001)
+sum_y = st.number_input("Enter the sum of y (Σy):", format="%.10f", step=0.0000000001)
+sum_x2 = st.number_input("Enter the sum of x^2 (Σx²):", format="%.10f", step=0.0000000001)
+sum_xy = st.number_input("Enter the sum of xy (Σxy):", format="%.10f", step=0.0000000001)
+sum_y2 = st.number_input("Enter the sum of y^2 (Σy²):", format="%.10f", step=0.0000000001)
+sum_x_squared = st.number_input("Enter the square of the sum of x ((Σx)^2):", format="%.10f", step=0.0000000001)
+sum_y_squared = st.number_input("Enter the square of the sum of y ((Σy)^2):", format="%.10f", step=0.0000000001)
 
 # Step 1: Check denominator to prevent division by zero
 denominator = n * sum_x2 - sum_x_squared
