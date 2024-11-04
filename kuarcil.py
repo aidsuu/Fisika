@@ -51,5 +51,6 @@ else:
         Ra = (Sa / abs(a)) * 100 if a != 0 else None
         Rb = (Sb / abs(b)) * 100 if b != 0 else None
 
+        # Displaying the relative errors
         st.write("Relative Error of a (Ra):", Ra, "%")
         st.write("Relative Error of b (Rb):", Rb, "%")
