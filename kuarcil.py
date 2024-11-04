@@ -30,7 +30,13 @@ else:
     Sy_numerator = (sum_y2 - (sum_x2 * sum_y**2) / denominator
                     - 2 * (sum_x * sum_y * sum_xy) / denominator
                     + (n * sum_xy**2) / denominator)
-    if n > 2:
+    
+    # Check for non-negative Sy_numerator
+    if Sy_numerator < 0:
+        st.error("Sy numerator is negative, resulting in an invalid square root calculation. Please check your input values.")
+    elif n <= 2:
+        st.error("The value of n should be greater than 2 for Sy, Sb, and Sa calculations.")
+    else:
         Sy = math.sqrt((1 / (n - 2)) * Sy_numerator)
         st.write("Sy =", Sy)
 
@@ -48,5 +54,3 @@ else:
 
         st.write("Relative Error of a (Ra) =", Ra, "%")
         st.write("Relative Error of b (Rb) =", Rb, "%")
-    else:
-        st.error("The value of n should be greater than 2 for Sy, Sb, and Sa calculations.")
