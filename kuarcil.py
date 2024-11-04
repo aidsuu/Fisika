@@ -4,14 +4,14 @@ import math
 # Title
 st.title("Calculation of Regression Parameters")
 
-# Input parameters
+# Input parameters with format for precise decimal inputs
 n = st.number_input("Enter the value of n (number of data points):", step=1)
-sum_x = st.number_input("Enter the sum of x (Σx):")
-sum_y = st.number_input("Enter the sum of y (Σy):")
-sum_x2 = st.number_input("Enter the sum of x^2 (Σx²):")
-sum_xy = st.number_input("Enter the sum of xy (Σxy):")
-sum_y2 = st.number_input("Enter the sum of y^2 (Σy²):")
-sum_x_squared = st.number_input("Enter the square of the sum of x ((Σx)^2):")
+sum_x = st.number_input("Enter the sum of x (Σx):", format="%.10f")
+sum_y = st.number_input("Enter the sum of y (Σy):", format="%.10f")
+sum_x2 = st.number_input("Enter the sum of x^2 (Σx²):", format="%.10f")
+sum_xy = st.number_input("Enter the sum of xy (Σxy):", format="%.10f")
+sum_y2 = st.number_input("Enter the sum of y^2 (Σy²):", format="%.10f")
+sum_x_squared = st.number_input("Enter the square of the sum of x ((Σx)^2):", format="%.10f")
 
 # Denominator check
 denominator = n * sum_x2 - sum_x_squared
