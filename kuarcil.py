@@ -1,38 +1,44 @@
 import streamlit as st
-import numpy as np
+import math
 
-def calculate_stats(Σxy, Σx, Σy, Σx2, n):
-    numerator_b = n * Σxy - Σx * Σy
-    denominator_b = n * Σx2 - (Σx)**2
-    b = numerator_b / denominator_b
+# Title
+st.title("Calculation of Regression Parameters")
 
-    numerator_a = (Σy * Σx2 - Σx * Σxy)
-    denominator_a = n * Σx2 - (Σx)**2
-    a = numerator_a / denominator_a
+# Input parameters
+n = st.number_input("Enter the value of n (number of data points):", step=1)
+sum_x = st.number_input("Enter the sum of x (Σx):")
+sum_y = st.number_input("Enter the sum of y (Σy):")
+sum_x2 = st.number_input("Enter the sum of x^2 (Σx²):")
+sum_xy = st.number_input("Enter the sum of xy (Σxy):")
+sum_y2 = st.number_input("Enter the sum of y^2 (Σy²):")
 
-    sy = np.sqrt((1 / (n - 2)) * (Σy**2 - (Σx2 * (Σy)**2 - 2 * Σx * Σy * Σxy + n * (Σxy)**2) / (n * Σx2 - (Σx)**2)))
-    sb = sy / np.sqrt(n * Σx2 - (Σx)**2)
-    sa = sy * np.sqrt(Σx2 / (n * Σx2 - (Σx)**2))
+# Calculation of b
+b = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x**2)
+st.write("b =", b)
 
-    r_a = abs(sa / a) * 100
-    r_b = abs(sb / b) * 100
+# Calculation of a
+a = (sum_y * sum_x2 - sum_x * sum_xy) / (n * sum_x2 - sum_x**2)
+st.write("a =", a)
 
-    return a, b, sy, sb, sa, r_a, r_b
+# Calculation of Sy
+Sy = math.sqrt(
+    (1 / (n - 2)) * (sum_y2 - (sum_x2 * sum_y**2) / (n * sum_x2 - sum_x**2) 
+                     - 2 * (sum_x * sum_y * sum_xy) / (n * sum_x2 - sum_x**2) 
+                     + (n * sum_xy**2) / (n * sum_x2 - sum_x**2))
+)
+st.write("Sy =", Sy)
 
-st.title("Statistical Analysis")
+# Calculation of Sb
+Sb = Sy * math.sqrt(n / (n * sum_x2 - sum_x**2))
+st.write("Sb =", Sb)
 
-Σxy = st.number_input("Enter Σxy", type=float)
-Σx = st.number_input("Enter Σx", type=float)
-Σy = st.number_input("Enter Σy", type=float)
-Σx2 = st.number_input("Enter Σx^2", type=float)
-n = st.number_input("Enter number of data points", type=int)
+# Calculation of Sa
+Sa = Sy * math.sqrt(sum_x2 / (n * sum_x2 - sum_x**2))
+st.write("Sa =", Sa)
 
-a, b, sy, sb, sa, r_a, r_b = calculate_stats(Σxy, Σx, Σy, Σx2, n)
+# Calculation of relative errors
+Ra = (Sa / a) * 100 if a != 0 else None
+Rb = (Sb / b) * 100 if b != 0 else None
 
-st.write(f"Intercept (a): {a:.2f}")
-st.write(f"Slope (b): {b:.2f}")
-st.write(f"Standard error of y (sy): {sy:.2f}")
-st.write(f"Standard error of b (sb): {sb:.2f}")
-st.write(f"Standard error of a (sa): {sa:.2f}")
-st.write(f"Relative Precision of a: {r_a:.2f}%")
-st.write(f"Relative Precision of b: {r_b:.2f}%")
+st.write("Relative Error of a (Ra) =", Ra, "%")
+st.write("Relative Error of b (Rb) =", Rb, "%")
